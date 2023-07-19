@@ -1,11 +1,11 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import styles from "./App.module.scss";
+import viteLogo from "/vite.svg";
+import reactLogo from "./assets/react.svg";
 import { BarChartPage } from "./Pages";
+
+import styles from "./App.module.scss";
 
 const router = createBrowserRouter([
   {
