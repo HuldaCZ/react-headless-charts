@@ -1,9 +1,10 @@
-import { Page } from "../../components";
+import { Page } from '../../components';
+import { BarChart } from '../../lib';
 
 export const BarChartPage = () => {
-  return (
-    <Page>
-      <div>BarChartPage</div>
-    </Page>
-  );
+    return (
+        <Page>
+            <BarChart />
+        </Page>
+    );
 };

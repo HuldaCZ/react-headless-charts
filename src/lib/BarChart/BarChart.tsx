@@ -1,3 +1,3 @@
 export const BarChart = () => {
-    return <div></div>
+    return <div>Hello</div>
 }
