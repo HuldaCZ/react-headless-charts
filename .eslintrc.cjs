@@ -1,27 +1,51 @@
-/* eslint-env node */
-
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'plugin:react-hooks/recommended',
-  ],
+  env: {
+      node: true,
+  },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: true,
-    tsconfigRootDir: __dirname,
+      sourceType: 'module',
   },
-  plugins: ['react-refresh'],
+  plugins: ['@typescript-eslint', 'simple-import-sort', 'react-hooks'],
+  extends: [
+      // 'eslint:recommended',
+      'plugin:@typescript-eslint/recommended',
+      'prettier',
+      'plugin:react-hooks/recommended',
+  ],
+  ignorePatterns: ['dist'],
   rules: {
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
-    '@typescript-eslint/no-non-null-assertion': 'off',
+      /**
+       * Rule for sorting imports.
+       * @see {@link https://github.com/lydell/eslint-plugin-simple-import-sort/}
+       */
+      'simple-import-sort/imports': [
+          'warn',
+          {
+              /**
+               * Groups of regular expressions that determine order of imports
+               * A new row is inserted in between the groups.
+               * Imports in one group are not divided by empty rows.
+               */
+              groups: [
+                  ['^\\u0000'], // Imports of side effects
+                  [
+                      '^react', // Import for react
+                      '^@?\\w', // Starts with any character in a word or with @
+                  ],
+                  [
+                      '^[^.]', // Anything that does not start with dot
+                      '^\\.', // Anything that starts with dot
+                  ],
+                  ['module\\.scss$'], // Anything that ends with module.scss (i.e. styles)
+              ],
+          },
+      ],
+      /** Rule for sorting exports.*/
+      'simple-import-sort/exports': 'warn',
+      '@typescript-eslint/no-empty-interface': 0,
+
+      // "no-empty-function": ["error", { "allow": ["functions", "arrowFunctions"] }]
   },
-}
+};
